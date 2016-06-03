@@ -392,8 +392,8 @@ class TransactionRunner
     for key, value of transaction.request.headers
       caseInsensitiveRequestHeadersMap[key.toLowerCase()] = key
 
-    if not caseInsensitiveRequestHeadersMap['content-length'] and transaction.request['body'] != ''
-      transaction.request.headers['Content-Length'] = Buffer.byteLength(transaction.request['body'], 'utf8')
+    if not caseInsensitiveRequestHeadersMap['content-length'] and transaction.request.body
+      transaction.request.headers['Content-Length'] = Buffer.byteLength(transaction.request.body, 'utf8')
 
   # This is actually doing more some pre-flight and conditional skipping of
   # the transcation based on the configuration or hooks. TODO rename
